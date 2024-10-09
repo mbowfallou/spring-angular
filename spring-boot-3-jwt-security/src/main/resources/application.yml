@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-boot-3-jwt-security
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:security-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    driverClassName: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USER:user}
+    password: ${DB_PASSWORD:passer@123}
+  jpa:
+    database-platform: ${DB_USER:org.hibernate.dialect.H2Dialect}
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder:
+
+
+
+#  http://localhost:8080/h2-console
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/jwt_security
+#    username: username
+#    password: password
+#    #url: jdbc:postgresql://localhost:5432/dbjwt
+#    #username: diagana
+#    #password: passer
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    hibernate:
+#      #ddl-auto: create-drop
+#      ddl-auto: update
+#    show-sql: false
+#    properties:
+#      hibernate:
+#        format_sql: true
+#    database: postgresql
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
